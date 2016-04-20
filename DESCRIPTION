@@ -3,11 +3,12 @@ Title: Collect Metrics about R Packages
 Version: 1.0.0
 Author: Gabor Csardi
 Maintainer: Gabor Csardi <gcsardi@mango-solutions.com>
-Description: This package is used to collect metrics about CRAN, BioConductor or other
-  packages, for Valid-R.
+Description: This package is used to collect metrics about CRAN, BioConductor or
+    other packages, for Valid-R.
 License: Other
 LazyData: true
-URL: https://github.com/MangoTheCat/packageMetrics2
-BugReports: https://github.com/MangoTheCat/packageMetrics2/issues
-Suggests: 
+URL: http://git.mango.local/gcsardi/packageMetrics2
+BugReports: http://jira.mango.local/
+Suggests:
     testthat
+RoxygenNote: 5.0.1.9000
