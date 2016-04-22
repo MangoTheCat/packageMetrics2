@@ -10,9 +10,23 @@ This package is used to collect metrics about CRAN, BioConductor or other
 
 ## Installation
 
+First install `remotes` from here:
+https://github.com/mangothecat/remotes#readme
+
+You will also need a command line git client.
 
 ```r
-remotes::install_git("http://git.mango.local/gcsardi/packageMetrics2.git")
+remotes::install_git(
+  "http://git.mango.local/gcsardi/packageMetrics2.git",
+  git = "external"
+)
+```
+
+Alternatively, you can clone the repository and then install from your
+clone:
+
+```r
+remotes::install_local("packageMetrics2")
 ```
 
 ## Usage
