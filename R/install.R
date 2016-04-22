@@ -41,7 +41,7 @@ install_package_tmp <- function(package, version, quiet = TRUE) {
   file.copy(tmpfile, filename)
   unlink(tmpfile)
 
-  install_local(filename, quiet = quiet, lib = lib_dir)
+  install_local(filename, quiet = quiet, lib = lib_dir, dependencies = TRUE)
 
   untar(filename, exdir = src_dir)
 
