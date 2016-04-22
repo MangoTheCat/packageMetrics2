@@ -10,7 +10,7 @@ NULL
 
 package_metric <- list
 
-#' @include coverage.R downloads.R deps.R cyclocomp.R
+#' @include coverage.R downloads.R deps.R cyclocomp.R vignette.R
 
 pkg_metrics <- list(
   ATC = package_metric(
@@ -52,6 +52,11 @@ pkg_metrics <- list(
     code = "NUP",
     func = num_recent_updates,
     desc = "Updates During the Last 6 Months"
+  ),
+  VIG = package_metric(
+    code = "VIG",
+    func = num_vignettes,
+    desc = "Number of vignettes"
   )
 )
 

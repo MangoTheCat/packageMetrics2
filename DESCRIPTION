@@ -34,5 +34,6 @@ Collate:
     'deps.R'
     'downloads.R'
     'install.R'
+    'vignette.R'
     'package.R'
     'utils.R'
