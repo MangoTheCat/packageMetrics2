@@ -25,12 +25,30 @@ pkg_metrics <- list(
   )
 )
 
+#' List all implemented metrics
+#'
+#' @return A named character vector of metrics descriptions.
+#'   The named are the three letter metrics ids.
+#'
 #' @export
 
 list_package_metrics <- function() {
   vapply(pkg_metrics, "[[", "", "desc")
 }
 
+#' Calculate all or the specified metrics for a package
+#'
+#' @param package Package name, character scalar.
+#' @param version Version number, character scalar. If \code{NULL},
+#'   then the latest version is used.
+#' @param metrics The ids of the metrics to calculate. The default
+#'   is to calculate all implemented metrics.
+#' @return A named numeric vector. The names are the three letter
+#'   metrics ids.
+#'
+#' @seealso \code{\link{package_metrics_csv}} to calculate the
+#'   metrics and write the output to a CSV file.
+#'
 #' @export
 #' @importFrom withr with_dir with_libpaths
 
@@ -65,6 +83,14 @@ package_metrics <- function(package, version = NULL,
   unlist(res)
 }
 
+#' Calculate metrics and write them to a CSV file
+#'
+#' @param file Output file name.
+#' @inheritParams package_metrics
+#'
+#' @seealso \code{\link{package_metrics}} to calculate the metrics,
+#' without writing them to a file.
+#'
 #' @export
 
 package_metrics_csv <- function(package, file, version = NULL,
