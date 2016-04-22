@@ -10,7 +10,7 @@ NULL
 
 package_metric <- list
 
-#' @include coverage.R downloads.R
+#' @include coverage.R downloads.R deps.R
 
 pkg_metrics <- list(
   ATC = package_metric(
@@ -22,6 +22,11 @@ pkg_metrics <- list(
     code = "DWL",
     func = download_counts,
     desc = "Number of Downloads"
+  ),
+  DPD = package_metric(
+    code = "DPD",
+    func = num_rev_deps,
+    desc = "Number of Reverse-Dependencies"
   )
 )
 

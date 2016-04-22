@@ -12,6 +12,7 @@ BugReports: http://jira.mango.local/
 Imports:
     covr,
     cranlogs,
+    jsonlite,
     remotes,
     withr
 Suggests:
@@ -20,6 +21,8 @@ Remotes: MangoTheCat/remotes
 RoxygenNote: 5.0.1.9000
 Collate:
     'coverage.R'
+    'urls.R'
+    'deps.R'
     'downloads.R'
     'install.R'
     'package.R'
