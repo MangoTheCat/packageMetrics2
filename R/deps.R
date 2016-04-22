@@ -13,8 +13,7 @@ num_rev_deps <- function(package, version = NULL) {
 #' @importFrom description dep_types
 
 num_deps <- function(package, version = NULL) {
-  url <- paste0(urls$crandb, "/", package, "/", version)
-  pkg <- fromJSON(url)
+  pkg <- crandb_package(package, version)
 
   has_deps <- intersect(names(pkg), dep_types)
   pkgs <- lapply(pkg[has_deps], names)

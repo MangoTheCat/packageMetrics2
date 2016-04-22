@@ -37,6 +37,16 @@ pkg_metrics <- list(
     code = "CCP",
     func = mean_cyclocomp,
     desc = "Cyclomatic Complexity"
+  ),
+  FRE = package_metric(
+    code = "FRE",
+    func = first_release,
+    desc = "Date of First Release"
+  ),
+  LRE = package_metric(
+    code = "LRE",
+    func = last_release,
+    desc = "Date of Last Release"
   )
 )
 
@@ -58,7 +68,7 @@ list_package_metrics <- function() {
 #'   then the latest version is used.
 #' @param metrics The ids of the metrics to calculate. The default
 #'   is to calculate all implemented metrics.
-#' @return A named numeric vector. The names are the three letter
+#' @return A named character vector. The names are the three letter
 #'   metrics ids.
 #'
 #' @seealso \code{\link{package_metrics_csv}} to calculate the

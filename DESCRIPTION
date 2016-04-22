@@ -17,6 +17,7 @@ Imports:
     cyclocomp,
     description,
     jsonlite,
+    memoise,
     remotes,
     withr
 Suggests:
