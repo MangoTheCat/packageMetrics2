@@ -47,6 +47,11 @@ pkg_metrics <- list(
     code = "LRE",
     func = last_release,
     desc = "Date of Last Release"
+  ),
+  NUP = package_metric(
+    code = "NUP",
+    func = num_recent_updates,
+    desc = "Updates During the Last 6 Months"
   )
 )
 

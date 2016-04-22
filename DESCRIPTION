@@ -18,6 +18,7 @@ Imports:
     description,
     jsonlite,
     memoise,
+    parsedate,
     remotes,
     withr
 Suggests:

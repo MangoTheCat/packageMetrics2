@@ -17,7 +17,7 @@ then the latest version is used.}
 is to calculate all implemented metrics.}
 }
 \value{
-A named numeric vector. The names are the three letter
+A named character vector. The names are the three letter
   metrics ids.
 }
 \description{

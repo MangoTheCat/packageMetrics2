@@ -21,3 +21,11 @@ last_release <- function(package, version = NULL) {
   pkg <- crandb_package(package, version = "all")
   pkg$timeline[[length(pkg$timeline)]]
 }
+
+#' @importFrom parsedate parse_date
+
+num_recent_updates <- function(package, version = NULL, interval = "6 months") {
+  pkg <- crandb_package(package, version = "all")
+  releases <- parse_date(unlist(pkg$timeline))
+  sum(Sys.time() - releases <= 24 * 7)
+}
