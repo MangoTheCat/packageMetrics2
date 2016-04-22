@@ -30,6 +30,7 @@ install_package_tmp <- function(package, version, quiet = TRUE) {
   dir.create(src_dir <- file.path(pkg_dir, "src"))
   dir.create(lib_dir <- file.path(pkg_dir, "lib"))
 
+  message("Downloading ", package, " ", version %||% "(latest)")
   tmpfile <- download_version(
     package,
     version,
@@ -41,6 +42,8 @@ install_package_tmp <- function(package, version, quiet = TRUE) {
   file.copy(tmpfile, filename)
   unlink(tmpfile)
 
+  message("Installing ", package, " ", version %||% "(latest)",
+          " and dependencies")
   install_local(filename, quiet = quiet, lib = lib_dir, dependencies = TRUE)
 
   untar(filename, exdir = src_dir)

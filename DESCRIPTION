@@ -33,3 +33,4 @@ Collate:
     'downloads.R'
     'install.R'
     'package.R'
+    'utils.R'
