@@ -23,6 +23,11 @@ pkg_metrics <- list(
     func = download_counts,
     desc = "Number of Downloads"
   ),
+  DEP = package_metric(
+    code = "DEP",
+    func = num_deps,
+    desc = "Num of Dependencies"
+  ),
   DPD = package_metric(
     code = "DPD",
     func = num_rev_deps,
