@@ -11,6 +11,7 @@ URL: http://git.mango.local/gcsardi/packageMetrics2
 BugReports: http://jira.mango.local/
 Imports:
     covr,
+    cranlogs,
     remotes,
     withr
 Suggests:
@@ -18,5 +19,6 @@ Suggests:
 RoxygenNote: 5.0.1.9000
 Collate:
     'coverage.R'
+    'downloads.R'
     'install.R'
     'package.R'

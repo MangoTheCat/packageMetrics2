@@ -10,13 +10,18 @@ NULL
 
 package_metric <- list
 
-#' @include coverage.R
+#' @include coverage.R downloads.R
 
 pkg_metrics <- list(
   ATC = package_metric(
     code = "ATC",
     func = author_test_coverage,
     desc = "Author Test Coverage"
+  ),
+  DWL = package_metric(
+    code = "DWL",
+    func = download_counts,
+    desc = "Number of Downloads"
   )
 )
 
@@ -46,7 +51,7 @@ package_metrics <- function(package, version = NULL,
   ## Trick to keep the names in the lapply below
   names(metrics) <- metrics
 
-  with_dir(
+  res <- with_dir(
     file.path(pkg_dir, "src"),
     with_libpaths(
       file.path(pkg_dir, "lib"),
@@ -54,4 +59,8 @@ package_metrics <- function(package, version = NULL,
       lapply(metrics, function(met) { pkg_metrics[[met]]$func(package) })
     )
   )
+
+  ## metrics can return a scalar number or a named vector,
+  ## we flatten the list, to get a single named numeric vector
+  unlist(res)
 }
