@@ -68,12 +68,12 @@ check_cached_dir <- function(package, version,
   can_attach <- with_libpaths(
     lib_dir,
     action = "prefix",
-    require(
+    suppressPackageStartupMessages(require(
       package,
       quietly = TRUE,
       warn.conflicts = TRUE,
       character.only = TRUE
-    )
+    ))
   )
   if (!can_attach) return(FALSE)
 
