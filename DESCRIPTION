@@ -9,6 +9,14 @@ License: Other
 LazyData: true
 URL: http://git.mango.local/gcsardi/packageMetrics2
 BugReports: http://jira.mango.local/
+Imports:
+    covr,
+    remotes,
+    withr
 Suggests:
     testthat
 RoxygenNote: 5.0.1.9000
+Collate:
+    'coverage.R'
+    'install.R'
+    'package.R'
