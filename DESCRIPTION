@@ -16,8 +16,7 @@ Imports:
     withr
 Suggests:
     testthat
-Remotes:
-    MangoTheCat/remotes
+Remotes: MangoTheCat/remotes
 RoxygenNote: 5.0.1.9000
 Collate:
     'coverage.R'
