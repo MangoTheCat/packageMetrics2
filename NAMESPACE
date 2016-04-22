@@ -2,6 +2,7 @@
 
 export(list_package_metrics)
 export(package_metrics)
+export(package_metrics_csv)
 importFrom(covr,package_coverage)
 importFrom(covr,percent_coverage)
 importFrom(cranlogs,cran_downloads)

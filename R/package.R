@@ -64,3 +64,23 @@ package_metrics <- function(package, version = NULL,
   ## we flatten the list, to get a single named numeric vector
   unlist(res)
 }
+
+#' @export
+
+package_metrics_csv <- function(package, file, version = NULL,
+                                metrics = names(list_package_metrics())) {
+
+  met <- package_metrics(package, version, metrics)
+
+  df <- data.frame(
+    stringsAsFactors = FALSE,
+    metric = names(met),
+    value = unname(met)
+  )
+
+  write.table(
+    df,  file = file,
+    row.names = FALSE, col.names = FALSE,
+    sep = ",", qmethod = "double", dec = "."
+  )
+}
