@@ -25,7 +25,7 @@ install_package_tmp <- function(package, version, quiet = TRUE) {
   ## Otherwise start clean
   unlink(pkg_dir, recursive = TRUE)
 
-  dir.create(pkg_dir)
+  dir.create(pkg_dir, recursive = TRUE)
   dir.create(src_dir <- file.path(pkg_dir, "src"))
   dir.create(lib_dir <- file.path(pkg_dir, "lib"))
 
@@ -51,8 +51,11 @@ install_package_tmp <- function(package, version, quiet = TRUE) {
 }
 
 get_pkg_dir <- function(package, version) {
-  ostmp <- dirname(tempdir())
-  file.path(ostmp, paste0(package, "-", version))
+  file.path(
+    dirname(tempdir()),
+    "packageMetrics2",
+    paste0(package, "-", version)
+  )
 }
 
 check_cached_dir <- function(package, version,
