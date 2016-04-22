@@ -13,15 +13,18 @@ Imports:
     covr,
     cranlogs,
     cyclocomp,
+    description,
     jsonlite,
     remotes,
     withr
 Suggests:
     testthat
-Remotes: MangoTheCat/remotes
+Remotes: MangoTheCat/remotes,
+    metacran/description
 RoxygenNote: 5.0.1.9000
 Collate:
     'coverage.R'
+    'cran_data.R'
     'cyclocomp.R'
     'urls.R'
     'deps.R'
