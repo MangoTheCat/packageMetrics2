@@ -17,11 +17,10 @@
 
 install_package_tmp <- function(package, version, quiet = TRUE) {
 
-  ostmp <- dirname(tempdir())
-  pkg_dir <- file.path(ostmp, paste0(package, "-", version))
+  pkg_dir <- get_pkg_dir(package, version)
 
   ## If the cached dir is good, nothing to do
-  if (check_cached_dir(pkg_dir, package, version)) return(pkg_dir)
+  if (check_cached_dir(package, version)) return(pkg_dir)
 
   ## Otherwise start clean
   unlink(pkg_dir, recursive = TRUE)
@@ -51,7 +50,13 @@ install_package_tmp <- function(package, version, quiet = TRUE) {
   pkg_dir
 }
 
-check_cached_dir <- function(pkg_dir, package, version) {
+get_pkg_dir <- function(package, version) {
+  ostmp <- dirname(tempdir())
+  file.path(ostmp, paste0(package, "-", version))
+}
+
+check_cached_dir <- function(package, version,
+                             pkg_dir = get_pkg_dir(package, version)) {
 
   src_dir <- file.path(pkg_dir, "src")
   lib_dir <- file.path(pkg_dir, "lib")
