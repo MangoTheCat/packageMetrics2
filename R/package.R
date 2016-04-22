@@ -112,6 +112,8 @@ package_metrics_csv <- function(package, file, version = NULL,
 
   met <- package_metrics(package, version, metrics)
 
+  met[is.na(met)] <- -1
+
   df <- data.frame(
     stringsAsFactors = FALSE,
     metric = names(met),
