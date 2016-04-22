@@ -17,7 +17,16 @@
 
 install_package_tmp <- function(package, version, quiet = TRUE) {
 
-  dir.create(pkg_dir <- tempfile())
+  ostmp <- dirname(tempdir())
+  pkg_dir <- file.path(ostmp, paste0(package, "-", version))
+
+  ## If the cached dir is good, nothing to do
+  if (check_cached_dir(pkg_dir, package, version)) return(pkg_dir)
+
+  ## Otherwise start clean
+  unlink(pkg_dir, recursive = TRUE)
+
+  dir.create(pkg_dir)
   dir.create(src_dir <- file.path(pkg_dir, "src"))
   dir.create(lib_dir <- file.path(pkg_dir, "lib"))
 
@@ -37,4 +46,30 @@ install_package_tmp <- function(package, version, quiet = TRUE) {
   untar(filename, exdir = src_dir)
 
   pkg_dir
+}
+
+check_cached_dir <- function(pkg_dir, package, version) {
+
+  src_dir <- file.path(pkg_dir, "src")
+  lib_dir <- file.path(pkg_dir, "lib")
+
+  if (!file.exists(pkg_dir) ||
+      !file.exists(src_dir) ||
+      !file.exists(lib_dir)) return(FALSE)
+
+  can_attach <- with_libpaths(
+    lib_dir,
+    action = "prefix",
+    require(
+      package,
+      quietly = TRUE,
+      warn.conflicts = TRUE,
+      character.only = TRUE
+    )
+  )
+  if (!can_attach) return(FALSE)
+
+  if (!file.exists(file.path(src_dir, package))) return(FALSE)
+
+  TRUE
 }

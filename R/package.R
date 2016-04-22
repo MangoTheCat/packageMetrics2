@@ -79,7 +79,6 @@ package_metrics <- function(package, version = NULL,
   }
 
   pkg_dir <- install_package_tmp(package, version)
-  on.exit(unlink(pkg_dir, recursive = TRUE), add = TRUE)
 
   ## Trick to keep the names in the lapply below
   names(metrics) <- metrics
