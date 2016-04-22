@@ -9,7 +9,7 @@ License: Other
 LazyData: true
 URL: http://git.mango.local/gcsardi/packageMetrics2
 BugReports: http://jira.mango.local/
-Depends R (>= 3.2.0)
+Depends: R (>= 3.2.0)
 Imports:
     covr,
     cranlogs,
