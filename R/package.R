@@ -10,7 +10,7 @@ NULL
 
 package_metric <- list
 
-#' @include coverage.R downloads.R deps.R
+#' @include coverage.R downloads.R deps.R cyclocomp.R
 
 pkg_metrics <- list(
   ATC = package_metric(
@@ -27,6 +27,11 @@ pkg_metrics <- list(
     code = "DPD",
     func = num_rev_deps,
     desc = "Number of Reverse-Dependencies"
+  ),
+  CCP = package_metric(
+    code = "CCP",
+    func = mean_cyclocomp,
+    desc = "Cyclomatic Complexity"
   )
 )
 
