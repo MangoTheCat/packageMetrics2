@@ -47,20 +47,22 @@ install_package_tmp2 <- function(package, version, quiet) {
   dir.create(lib_dir <- file.path(pkg_dir, "lib"))
 
   message("Downloading ", package, " ", version %||% "(latest)")
-  tmpfile <- download_version(
-    package,
-    version,
-    type = "source",
-    quiet = quiet
-  )
+  tmpfile <- if (package %in% r_base_packages) {
+    download_base_package(package, version, quiet)
+
+  } else {
+    download_package(package, version, quiet)
+  }
 
   filename <- file.path(src_dir, paste0(package, "_", version, ".tar.gz"))
   file.copy(tmpfile, filename)
   unlink(tmpfile)
 
-  message("Installing ", package, " ", version %||% "(latest)",
-          " and dependencies")
-  install_local(filename, quiet = quiet, lib = lib_dir, dependencies = TRUE)
+  if (! package %in% r_base_packages) {
+    message("Installing ", package, " ", version %||% "(latest)",
+            " and dependencies")
+    install_local(filename, quiet = quiet, lib = lib_dir, dependencies = TRUE)
+  }
 
   untar(filename, exdir = src_dir)
 
@@ -100,4 +102,43 @@ check_cached_dir <- function(package, version,
   if (!file.exists(file.path(src_dir, package))) return(FALSE)
 
   TRUE
+}
+
+#' @include urls.R
+
+download_base_package <- function(package, version, quiet) {
+  if (version != packageDescription(package)$Version) {
+    stop("R version and base package version must match")
+  }
+
+  url <- sprintf(
+    paste0(urls$basesvn, package),
+    gsub(".", "-", fixed = TRUE, paste(version, collapse = "."))
+  )
+
+  cmd <- paste("svn export", url)
+  tarfile <- paste0(package, "_", version, ".tar.gz")
+
+  dir.create(tmp <- tempfile())
+  on.exit(unlink(file.path(tmp, package), recursive = TRUE), add = TRUE)
+  with_dir(
+    tmp,
+    {
+      system(cmd, intern = quiet)
+      tar(tarfile = tarfile, files = package)
+    }
+  )
+
+  file.path(tmp, tarfile)
+}
+
+#' @importFrom remotes download_version
+
+download_package <- function(package, version, quiet) {
+  download_version(
+    package,
+    version,
+    type = "source",
+    quiet = quiet
+  )
 }

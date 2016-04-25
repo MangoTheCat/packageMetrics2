@@ -37,3 +37,4 @@ Collate:
     'vignette.R'
     'package.R'
     'utils.R'
+SystemRequirements: Subversion
