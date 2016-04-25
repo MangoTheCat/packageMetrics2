@@ -47,7 +47,7 @@ install_package_tmp2 <- function(package, version, quiet) {
   dir.create(lib_dir <- file.path(pkg_dir, "lib"))
 
   message("Downloading ", package, " ", version %||% "(latest)")
-  tmpfile <- if (package %in% r_base_packages) {
+  tmpfile <- if (is_base_package(package)) {
     download_base_package(package, version, quiet)
 
   } else {
@@ -58,7 +58,7 @@ install_package_tmp2 <- function(package, version, quiet) {
   file.copy(tmpfile, filename)
   unlink(tmpfile)
 
-  if (! package %in% r_base_packages) {
+  if (! is_base_package(package)) {
     message("Installing ", package, " ", version %||% "(latest)",
             " and dependencies")
     install_local(filename, quiet = quiet, lib = lib_dir, dependencies = TRUE)

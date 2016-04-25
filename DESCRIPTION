@@ -16,11 +16,14 @@ Imports:
     cranlogs,
     cyclocomp,
     description,
+    httr,
     jsonlite,
     memoise,
     parsedate,
     remotes,
-    withr
+    rvest,
+    withr,
+    xml2
 Suggests:
     testthat
 Remotes: MangoTheCat/remotes,
