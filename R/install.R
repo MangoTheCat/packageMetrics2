@@ -1,4 +1,12 @@
 
+default_repos <- function() {
+  c(BioCsoft  = "https://bioconductor.org/packages/3.2/bioc",
+    BioCann   = "https://bioconductor.org/packages/3.2/data/annotation",
+    BioCexp   = "https://bioconductor.org/packages/3.2/data/experiment",
+    BioCextra = "https://bioconductor.org/packages/3.2/extra",
+    CRAN      = "https://cran.rstudio.com")
+}
+
 #' Download, extract and install a specific version of a package
 #'
 #' @param package Package name, character scalar.
@@ -12,10 +20,19 @@
 #'   the tarball. Subdirectory \code{lib} contains the library with
 #'   the installed package(s). The dependencies are also installed here.
 #'
-#' @importFrom remotes download_version install_local
+#' @importFrom remotes install_local
+#' @importFrom withr with_options
+#' @include cran_data.R
 #' @keywords internal
 
 install_package_tmp <- function(package, version, quiet = TRUE) {
+  with_options(
+    list(repos = default_repos()),
+    install_package_tmp2(package, version, quiet = quiet)
+  )
+}
+
+install_package_tmp2 <- function(package, version, quiet) {
 
   pkg_dir <- get_pkg_dir(package, version)
 
