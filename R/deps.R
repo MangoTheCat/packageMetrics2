@@ -22,6 +22,8 @@ num_rev_deps <- function(package, version = NULL) {
   }
 }
 
+#' @importFrom rvest html_table
+
 bioc_num_rev_deps <- function(package, version) {
   page <- get_bioc_page(package, version)
   table <- html_table(html_nodes(page, "table.details")[[1]])
