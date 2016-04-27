@@ -22,7 +22,7 @@ num_rev_deps <- function(package, version = NULL) {
   }
 }
 
-#' @importFrom rvest html_table
+#' @importFrom rvest html_table html_nodes
 
 bioc_num_rev_deps <- function(package, version) {
   page <- get_bioc_page(package, version)
