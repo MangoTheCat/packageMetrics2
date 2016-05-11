@@ -30,6 +30,7 @@ Remotes: MangoTheCat/remotes,
     metacran/description
 RoxygenNote: 5.0.1.9000
 Collate:
+    'code_lines.R'
     'coverage.R'
     'cran_data.R'
     'cyclocomp.R'

@@ -11,7 +11,7 @@ NULL
 package_metric <- list
 
 #' @include coverage.R downloads.R deps.R cyclocomp.R vignette.R
-#' @include github.R
+#' @include github.R code_lines.R
 
 pkg_metrics <- list(
   ATC = package_metric(
@@ -63,6 +63,16 @@ pkg_metrics <- list(
     code = "OGH",
     func = is_on_github,
     desc = "Whether the package is on GitHub"
+  ),
+  LNC = package_metric(
+    code = "LNC",
+    func = compiled_code_lines,
+    desc = "Number of lines of compiled code"
+  ),
+  LNR = package_metric(
+    code = "LNR",
+    func = r_code_lines,
+    desc = "Number of lines of R code"
   )
 )
 
