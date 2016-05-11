@@ -11,6 +11,7 @@ NULL
 package_metric <- list
 
 #' @include coverage.R downloads.R deps.R cyclocomp.R vignette.R
+#' @include github.R
 
 pkg_metrics <- list(
   ATC = package_metric(
@@ -57,6 +58,11 @@ pkg_metrics <- list(
     code = "VIG",
     func = num_vignettes,
     desc = "Number of vignettes"
+  ),
+  OGH = package_metric(
+    code = "OGH",
+    func = is_on_github,
+    desc = "Whether the package is on GitHub"
   )
 )
 

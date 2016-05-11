@@ -36,6 +36,7 @@ Collate:
     'urls.R'
     'deps.R'
     'downloads.R'
+    'github.R'
     'install.R'
     'vignette.R'
     'package.R'
