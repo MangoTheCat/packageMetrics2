@@ -10,7 +10,7 @@ compiled_code_lines <- function(package, version = NULL) {
     recursive = TRUE,
     full.names = TRUE,
     pattern = paste0(
-      "(\\.c|\\.cc|\\.C|\\.cpp|\\.h|\\.hh|\\.hpp|",
+      "(\\.c|\\.cc|\\.cxx|\\.C|\\.cpp|\\.h|\\.hh|\\.hpp|\\.hxx|",
       "\\.f90|\\.f95|\\.f03|\\.f|\\.for)$"
     )
   )
