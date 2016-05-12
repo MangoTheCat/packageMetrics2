@@ -84,6 +84,11 @@ pkg_metrics <- list(
     func = is_on_github,
     desc = "Whether the package is on GitHub"
   ),
+  SEM = package_metric(
+    code = "SEM",
+    func = gp_trailing_semicolon,
+    desc = "Number of trailing semicolons in the code"
+  ),
   VIG = package_metric(
     code = "VIG",
     func = num_vignettes,

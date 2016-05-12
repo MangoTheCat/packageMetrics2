@@ -3,6 +3,7 @@ my_gp_checks <- c(
   "lintr_assignment_linter",            # <- is used, not =
   "lintr_line_length_linter",           # lines are shorter than 80
   "truefalse_not_tf",                   # TRUE/FALSE instead of T/F
+  "lintr_trailing_semicolon_linter",    # no trailing semicolons
   NULL
 )
 
@@ -39,4 +40,9 @@ gp_line_length <- function(package, version = NULL) {
 gp_truefalse_not_tf <- function(package, version = NULL) {
   gp <- get_gp_results(package, version)
   gp_get_num_fails(gp, "truefalse_not_tf")
+}
+
+gp_trailing_semicolon <- function(package, version = NULL) {
+  gp <- get_gp_results(package, version)
+  gp_get_num_fails(gp, "lintr_trailing_semicolon_linter")
 }
