@@ -44,6 +44,16 @@ pkg_metrics <- list(
     func = first_release,
     desc = "Date of First Release"
   ),
+  LNC = package_metric(
+    code = "LNC",
+    func = compiled_code_lines,
+    desc = "Number of lines of compiled code"
+  ),
+  LNR = package_metric(
+    code = "LNR",
+    func = r_code_lines,
+    desc = "Number of lines of R code"
+  ),
   LRE = package_metric(
     code = "LRE",
     func = last_release,
@@ -54,25 +64,15 @@ pkg_metrics <- list(
     func = num_recent_updates,
     desc = "Updates During the Last 6 Months"
   ),
-  VIG = package_metric(
-    code = "VIG",
-    func = num_vignettes,
-    desc = "Number of vignettes"
-  ),
   OGH = package_metric(
     code = "OGH",
     func = is_on_github,
     desc = "Whether the package is on GitHub"
   ),
-  LNC = package_metric(
-    code = "LNC",
-    func = compiled_code_lines,
-    desc = "Number of lines of compiled code"
-  ),
-  LNR = package_metric(
-    code = "LNR",
-    func = r_code_lines,
-    desc = "Number of lines of R code"
+  VIG = package_metric(
+    code = "VIG",
+    func = num_vignettes,
+    desc = "Number of vignettes"
   )
 )
 
