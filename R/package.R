@@ -11,9 +11,14 @@ NULL
 package_metric <- list
 
 #' @include coverage.R downloads.R deps.R cyclocomp.R vignette.R
-#' @include github.R code_lines.R
+#' @include github.R code_lines.R gp.R
 
 pkg_metrics <- list(
+  ARR = package_metric(
+    code = "ARR",
+    func = gp_arrow_assign,
+    desc = "Number of times = is used for assignment"
+  ),
   ATC = package_metric(
     code = "ATC",
     func = author_test_coverage,
@@ -43,6 +48,11 @@ pkg_metrics <- list(
     code = "FRE",
     func = first_release,
     desc = "Date of First Release"
+  ),
+  LLE = package_metric(
+    code = "LLE",
+    func = gp_line_length,
+    desc = "Number of code lines longer than 80 characters"
   ),
   LNC = package_metric(
     code = "LNC",

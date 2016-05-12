@@ -16,6 +16,7 @@ Imports:
     cranlogs,
     cyclocomp,
     description,
+    goodpractice,
     httr,
     jsonlite,
     memoise,
@@ -26,7 +27,8 @@ Imports:
     xml2
 Suggests:
     testthat
-Remotes: MangoTheCat/remotes,
+Remotes: MangoTheCat/goodpractice,
+    MangoTheCat/remotes,
     metacran/description
 RoxygenNote: 5.0.1.9000
 Collate:
@@ -38,6 +40,7 @@ Collate:
     'deps.R'
     'downloads.R'
     'github.R'
+    'gp.R'
     'install.R'
     'vignette.R'
     'package.R'
