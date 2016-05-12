@@ -49,6 +49,11 @@ pkg_metrics <- list(
     func = first_release,
     desc = "Date of First Release"
   ),
+  LIB = package_metric(
+    code = "LIB",
+    func = gp_library_require,
+    desc = "Number of library and require calls"
+  ),
   LLE = package_metric(
     code = "LLE",
     func = gp_line_length,
@@ -69,6 +74,11 @@ pkg_metrics <- list(
     func = last_release,
     desc = "Date of Last Release"
   ),
+  NAT = package_metric(
+    code = "NAT",
+    func = gp_attach_detach,
+    desc = "Number of attach and detach calls"
+  ),
   NTF = package_metric(
     code = "NTF",
     func = gp_truefalse_not_tf,
@@ -84,10 +94,20 @@ pkg_metrics <- list(
     func = is_on_github,
     desc = "Whether the package is on GitHub"
   ),
+  SAP = package_metric(
+    code = "SAP",
+    func = gp_sapply,
+    desc = "Number of sapply calls"
+  ),
   SEM = package_metric(
     code = "SEM",
     func = gp_trailing_semicolon,
     desc = "Number of trailing semicolons in the code"
+  ),
+  SWD = package_metric(
+    code = "SWD",
+    func = gp_setwd,
+    desc = "Number of setwd calls"
   ),
   VIG = package_metric(
     code = "VIG",
