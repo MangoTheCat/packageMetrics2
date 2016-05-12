@@ -69,6 +69,11 @@ pkg_metrics <- list(
     func = last_release,
     desc = "Date of Last Release"
   ),
+  NTF = package_metric(
+    code = "NTF",
+    func = gp_truefalse_not_tf,
+    desc = "Number of times T/F is used instead of TRUE/FALSE"
+  ),
   NUP = package_metric(
     code = "NUP",
     func = num_recent_updates,
