@@ -12,6 +12,7 @@ BugReports: http://jira.mango.local/
 Depends:
     R (>= 3.2.0)
 Imports:
+    callr,
     covr,
     cranlogs,
     cyclocomp,
@@ -19,6 +20,7 @@ Imports:
     goodpractice,
     httr,
     jsonlite,
+    lintr,
     memoise,
     parsedate,
     remotes,
@@ -27,7 +29,8 @@ Imports:
     xml2
 Suggests:
     testthat
-Remotes: MangoTheCat/goodpractice,
+Remotes: MangoTheCat/callr,
+    MangoTheCat/goodpractice,
     MangoTheCat/remotes,
     metacran/description
 RoxygenNote: 5.0.1.9000

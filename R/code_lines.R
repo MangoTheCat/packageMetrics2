@@ -30,3 +30,24 @@ code_lines <- function(files) {
   lc <- vapply(files, function(f) length(readLines(f)), 1L)
   sum(lc)
 }
+
+#' @importFrom callr r_eval
+
+function_lines <- function(package, version = NULL) {
+  fun <- function(package) {
+    files <- list.files(
+      file.path(package, "R"),
+      pattern = "[.][rRsSq]$",
+      full.names = TRUE
+    )
+    exprs <- lapply(files, lintr::get_source_expressions)
+    exprs <- unlist(lapply(exprs, "[[", "expressions"), recursive = FALSE)
+
+    ## Drop the expression that belongs to the file itself
+    Filter(function(x) is.null(x$file_lines), exprs)
+  }
+
+  pd <- r_eval(fun, args = list(package), mode = "expert")
+  src <- vapply(pd, "[[", "", "content")
+  mean(vapply(strsplit(src, "\n"), length, 1L))
+}

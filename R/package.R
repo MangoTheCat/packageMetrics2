@@ -44,6 +44,11 @@ pkg_metrics <- list(
     func = mean_cyclocomp,
     desc = "Cyclomatic Complexity"
   ),
+  FLE = package_metric(
+    code = "FLE",
+    func = function_lines,
+    desc = "Average number of code lines per function"
+  ),
   FRE = package_metric(
     code = "FRE",
     func = first_release,

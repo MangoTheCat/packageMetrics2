@@ -61,7 +61,13 @@ install_package_tmp2 <- function(package, version, quiet) {
   if (! is_base_package(package)) {
     message("Installing ", package, " ", version %||% "(latest)",
             " and dependencies")
-    install_local(filename, quiet = quiet, lib = lib_dir, dependencies = TRUE)
+    install_local(
+      filename,
+      quiet = quiet,
+      lib = lib_dir,
+      dependencies = TRUE,
+      INSTALL_opts = "--with-keep.source"
+    )
   }
 
   untar(filename, exdir = src_dir)
