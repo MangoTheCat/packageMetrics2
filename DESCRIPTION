@@ -16,7 +16,7 @@ Imports:
     covr,
     cranlogs,
     cyclocomp,
-    description,
+    desc,
     goodpractice,
     httr,
     jsonlite,
@@ -32,7 +32,7 @@ Suggests:
 Remotes: MangoTheCat/callr,
     MangoTheCat/goodpractice,
     MangoTheCat/remotes,
-    metacran/description
+    metacran/desc
 RoxygenNote: 5.0.1.9000
 Collate:
     'code_lines.R'

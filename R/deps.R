@@ -36,7 +36,7 @@ bioc_num_rev_deps <- function(package, version) {
 
 #' @include urls.R cran_data.R
 #' @importFrom jsonlite fromJSON
-#' @importFrom description desc_get_deps
+#' @importFrom desc desc_get_deps
 
 num_deps <- function(package, version = NULL) {
 

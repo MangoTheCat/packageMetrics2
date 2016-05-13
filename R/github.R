@@ -11,7 +11,7 @@
 #'   \code{0} if we could not decide.
 #'
 #' @keywords internal
-#' @importFrom description desc_get
+#' @importFrom desc desc_get
 
 is_on_github <- function(package, version = NULL) {
   url <- desc_get(file = package, "URL")

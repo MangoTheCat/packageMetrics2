@@ -16,7 +16,7 @@ is_base_package <- function(package) {
   package %in% r_base_packages
 }
 
-#' @importFrom description desc_get
+#' @importFrom desc desc_get
 
 is_cran_package <- function(package) {
   identical(
@@ -25,7 +25,7 @@ is_cran_package <- function(package) {
   )
 }
 
-#' @importFrom description desc_fields
+#' @importFrom desc desc_fields
 
 is_bioc_package <- function(package) {
   "biocViews" %in% desc_fields(file = package)
