@@ -47,7 +47,7 @@ function_lines <- function(package, version = NULL) {
     Filter(function(x) is.null(x$file_lines), exprs)
   }
 
-  pd <- r_eval(fun, args = list(package), mode = "expert")
+  pd <- r_eval(fun, args = list(package))
   src <- vapply(pd, "[[", "", "content")
   mean(vapply(strsplit(src, "\n"), length, 1L))
 }
