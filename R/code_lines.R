@@ -31,7 +31,7 @@ code_lines <- function(files) {
   sum(lc)
 }
 
-#' @importFrom callr r_eval
+#' @importFrom callr r_safe
 
 function_lines <- function(package, version = NULL) {
   fun <- function(package) {
@@ -47,7 +47,7 @@ function_lines <- function(package, version = NULL) {
     Filter(function(x) is.null(x$file_lines), exprs)
   }
 
-  pd <- r_eval(fun, args = list(package))
+  pd <- r_safe(fun, args = list(package))
   src <- vapply(pd, "[[", "", "content")
   mean(vapply(strsplit(src, "\n"), length, 1L))
 }
