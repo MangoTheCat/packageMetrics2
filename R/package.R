@@ -164,14 +164,19 @@ package_metrics <- function(package, version = NULL,
   ## Trick to keep the names in the lapply below
   names(metrics) <- metrics
 
+  message("Metrics: ", appendLF = FALSE)
   res <- with_dir(
     file.path(pkg_dir, "src"),
     with_libpaths(
       file.path(pkg_dir, "lib"),
       action = "prefix",
-      lapply(metrics, function(met) { pkg_metrics[[met]]$func(package) })
+      lapply(metrics, function(met) {
+        message(met, " ", appendLF = FALSE)
+        pkg_metrics[[met]]$func(package)
+      })
     )
   )
+  message()
 
   ## metrics can return a scalar number or a named vector,
   ## we flatten the list, to get a single named numeric vector

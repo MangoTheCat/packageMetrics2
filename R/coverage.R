@@ -4,7 +4,6 @@
 
 author_test_coverage <- function(pkg, by = c("line", "expression")) {
 
-  message("Calculating test coverage for ", pkg)
   tryCatch(
     {
       cov <- with_envvar(
