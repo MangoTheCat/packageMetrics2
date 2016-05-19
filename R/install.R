@@ -1,10 +1,6 @@
 
 default_repos <- function() {
-  c(BioCsoft  = "https://bioconductor.org/packages/3.2/bioc",
-    BioCann   = "https://bioconductor.org/packages/3.2/data/annotation",
-    BioCexp   = "https://bioconductor.org/packages/3.2/data/experiment",
-    BioCextra = "https://bioconductor.org/packages/3.2/extra",
-    CRAN      = "https://cran.rstudio.com")
+  c(remotes::bioc_install_repos(), CRAN = "https://cran.rstudio.com")
 }
 
 #' Download, extract and install a specific version of a package
