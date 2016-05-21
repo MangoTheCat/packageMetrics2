@@ -8,6 +8,7 @@ my_gp_checks <- c(
   "lintr_setwd_linter",
   "lintr_sapply_linter",
   "lintr_library_require_linter",
+  "lintr_seq_linter",                   # 1:length(...), etc. expressions
   NULL
 )
 
@@ -69,4 +70,9 @@ gp_sapply <- function(package, version = NULL) {
 gp_library_require <- function(package, version = NULL) {
   gp <- get_gp_results(package, version)
   gp_get_num_fails(gp, "lintr_library_require_linter")
+}
+
+gp_seq <- function(package, version = NULL) {
+  gp <- get_gp_results(package, version)
+  gp_get_num_fails(gp, "lintr_seq_linter")
 }

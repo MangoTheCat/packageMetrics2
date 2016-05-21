@@ -109,6 +109,11 @@ pkg_metrics <- list(
     func = gp_trailing_semicolon,
     desc = "Number of trailing semicolons in the code"
   ),
+  SEQ = package_metric(
+    code = "SEQ",
+    func = gp_seq,
+    desc = "Number of 1:length(vec) expressions"
+  ),
   SWD = package_metric(
     code = "SWD",
     func = gp_setwd,
