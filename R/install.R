@@ -127,6 +127,11 @@ download_base_package <- function(package, version, quiet) {
     tmp,
     {
       system(cmd, intern = quiet)
+
+      lines <- readLines(file.path(package, "DESCRIPTION.in"))
+      lines <- gsub("@VERSION@", version, lines, fixed = TRUE)
+      writeLines(lines, file.path(package, "DESCRIPTION"))
+
       tar(tarfile = tarfile, files = package)
     }
   )
