@@ -1,6 +1,6 @@
 Package: packageMetrics2
 Title: Collect Metrics about R Packages
-Version: 1.0.0
+Version: 1.0.1
 Author: Gabor Csardi
 Maintainer: Gabor Csardi <gcsardi@mango-solutions.com>
 Description: This package is used to collect metrics about CRAN, BioConductor or
