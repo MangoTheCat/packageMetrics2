@@ -127,7 +127,10 @@ check_cached_dir <- function(package, version,
 
 package_source_type <- function(package, source) {
 
-  if (tolower(source) == "cran") {
+  if (is.null(source)) {
+    "CRAN"                              # works for BioC as well
+
+  } else if (tolower(source) == "cran") {
     "CRAN"
 
   } else if (tolower(source) == "base") {
