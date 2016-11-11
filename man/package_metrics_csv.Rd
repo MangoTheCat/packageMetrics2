@@ -5,7 +5,7 @@
 \title{Calculate metrics and write them to a CSV file}
 \usage{
 package_metrics_csv(package, file, version = NULL,
-  metrics = names(list_package_metrics()))
+  metrics = names(list_package_metrics()), source = NULL)
 }
 \arguments{
 \item{package}{Package name, character scalar.}
@@ -17,6 +17,9 @@ then the latest version is used.}
 
 \item{metrics}{The ids of the metrics to calculate. The default
 is to calculate all implemented metrics.}
+
+\item{source}{Where to get the package sources. CRAN and BioC
+packages are found automatically, others need to be specified.}
 }
 \description{
 Calculate metrics and write them to a CSV file

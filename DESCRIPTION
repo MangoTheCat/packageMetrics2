@@ -32,7 +32,7 @@ Suggests:
 Remotes: MangoTheCat/callr,
     MangoTheCat/goodpractice,
     MangoTheCat/remotes
-RoxygenNote: 5.0.1.9000
+RoxygenNote: 5.0.1
 Collate:
     'code_lines.R'
     'coverage.R'

@@ -15,6 +15,9 @@ then the latest version is used.}
 
 \item{metrics}{The ids of the metrics to calculate. The default
 is to calculate all implemented metrics.}
+
+\item{source}{Where to get the package sources. CRAN and BioC
+packages are found automatically, others need to be specified.}
 }
 \value{
 A named character vector. The names are the three letter

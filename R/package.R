@@ -144,6 +144,8 @@ list_package_metrics <- function() {
 #'   then the latest version is used.
 #' @param metrics The ids of the metrics to calculate. The default
 #'   is to calculate all implemented metrics.
+#' @param source Where to get the package sources. CRAN and BioC
+#'   packages are found automatically, others need to be specified.
 #' @return A named character vector. The names are the three letter
 #'   metrics ids.
 #'
@@ -200,9 +202,10 @@ package_metrics <- function(package, version = NULL,
 #' @export
 
 package_metrics_csv <- function(package, file, version = NULL,
-                                metrics = names(list_package_metrics())) {
+                                metrics = names(list_package_metrics()),
+                                source = NULL) {
 
-  met <- package_metrics(package, version, metrics)
+  met <- package_metrics(package, version, metrics, source = source)
 
   met[is.na(met)] <- -1
 
