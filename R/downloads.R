@@ -7,7 +7,10 @@ cran_downloads_beginning <- "2012-01-01"
 download_counts <- function(package, version = NULL) {
   type <- package_type(package)
 
-  if (type == "base") {
+  if (is.na(type)) {
+    NA
+
+  } else if (type == "base") {
     NA
 
   } else if (type == "CRAN") {

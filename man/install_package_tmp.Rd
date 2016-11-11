@@ -4,7 +4,7 @@
 \alias{install_package_tmp}
 \title{Download, extract and install a specific version of a package}
 \usage{
-install_package_tmp(package, version, quiet = TRUE)
+install_package_tmp(package, version, quiet = TRUE, source = NULL)
 }
 \arguments{
 \item{package}{Package name, character scalar.}

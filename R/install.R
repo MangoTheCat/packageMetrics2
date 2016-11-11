@@ -21,14 +21,15 @@ default_repos <- function() {
 #' @include cran_data.R
 #' @keywords internal
 
-install_package_tmp <- function(package, version, quiet = TRUE) {
+install_package_tmp <- function(package, version, quiet = TRUE,
+                                source = NULL) {
   with_options(
     list(repos = default_repos()),
-    install_package_tmp2(package, version, quiet = quiet)
+    install_package_tmp2(package, version, quiet = quiet, source = source)
   )
 }
 
-install_package_tmp2 <- function(package, version, quiet) {
+install_package_tmp2 <- function(package, version, quiet, source) {
 
   pkg_dir <- get_pkg_dir(package, version)
 
@@ -43,11 +44,26 @@ install_package_tmp2 <- function(package, version, quiet) {
   dir.create(lib_dir <- file.path(pkg_dir, "lib"))
 
   message("Downloading ", package, " ", version %||% "(latest)")
-  tmpfile <- if (is_base_package(package)) {
-    download_base_package(package, version, quiet)
 
-  } else {
-    download_package(package, version, quiet)
+  type <- package_source_type(package, source)
+
+  tmpfile <- if (is.na(type)) {
+    stop("Unknown package source: ", source)
+
+  } else if (type == "base") {
+    download_package_base(package, version, quiet)
+
+  } else if (type %in% c("CRAN", "BioC")) {
+    download_package_cranlike(package, version, quiet)
+
+  } else if (type == "GitHub") {
+    download_package_github(package, version, source)
+
+  } else if (type == "RForge") {
+    download_package_rforge(package, version)
+
+  } else if (type == "URL") {
+    download_package_url(package, source)
   }
 
   filename <- file.path(src_dir, paste0(package, "_", version, ".tar.gz"))
@@ -106,9 +122,37 @@ check_cached_dir <- function(package, version,
   TRUE
 }
 
+package_source_type <- function(package, source) {
+
+  if (tolower(source) == "cran") {
+    "CRAN"
+
+  } else if (tolower(source) == "base") {
+    "base"
+
+  } else if (tolower(source) == "bioc") {
+    "BioC"
+
+  } else if (tolower(source) == "recommended") {
+    "CRAN"
+
+  } else if (grepl("^github-", tolower(source))) {
+    "GitHub"
+
+  } else if (tolower(source) == "rforge") {
+    "RForge"
+
+  } else if (grepl("^url-", tolower(source))) {
+    "URL"
+
+  } else {
+    NA_character_
+  }
+}
+
 #' @include urls.R
 
-download_base_package <- function(package, version, quiet) {
+download_package_base <- function(package, version, quiet) {
   if (version != packageDescription(package)$Version) {
     stop("R version and base package version must match")
   }
@@ -141,11 +185,101 @@ download_base_package <- function(package, version, quiet) {
 
 #' @importFrom remotes download_version
 
-download_package <- function(package, version, quiet) {
+download_package_cranlike <- function(package, version, quiet) {
   download_version(
     package,
     version,
     type = "source",
     quiet = quiet
   )
+}
+
+download_package_github <- function(package, version, source) {
+
+  slug <- sub("^github-", "", source)
+  url <- NULL
+
+  ## If no version, then just a snapshot
+  if (is.null(version)) url <- gh_download_url(slug)
+
+  ## Try releases first
+  if (is.null(url)) {
+    releases <- gh_releases(slug)
+    if (version %in% names(releases)) {
+      url <- releases[version]
+    } else if (paste0("v", version) %in% names(releases)) {
+      url <- releases[paste0("v", version)]
+    }
+  }
+
+  ## Otherwise try tags
+  if (is.null(url)) {
+    tags <- gh_tags(slug)
+    if (version %in% names(tags)) {
+      url <- tags[version]
+    } else if (paste0("v", version) %in% names(tags)) {
+      url <- tags[paste0("v", version)]
+    }
+  }
+
+  ## Otherwise just download a snapshot
+  url <- gh_download_url(slug)
+
+  download(tmp <- tempfile(fileext = ".tar.gz"), url)
+
+  build_tar_gz(tmp)
+}
+
+#' @importFrom withr with_dir
+#' @importFrom callr rcmd_safe
+
+build_tar_gz <- function(targz) {
+
+  dir.create(tmpdir <- tempfile())
+  untar(targz, exdir = tmpdir)
+  pkgdir <- file.path(tmpdir, list.files(tmpdir))
+
+  build_status <- with_dir(
+    tmpdir,
+    rcmd_safe("build", basename(pkgdir))
+  )
+  unlink(pkgdir, recursive = TRUE)
+  report_system_error("Build failed", build_status)
+
+  ## replace previous handler, no need to clean up any more
+  on.exit(NULL)
+
+  file.path(
+    tmpdir,
+    list.files(tmpdir, pattern = "\\.tar\\.gz$")
+  )
+}
+
+report_system_error <- function(msg, status) {
+
+  if (status$status == 0) return()
+
+  if (status$stderr == "") {
+    stop(
+      msg, ", unknown error, standard output:\n",
+      status$stdout,
+      call. = FALSE
+    )
+
+  } else {
+    stop(
+      paste0("\n", msg, ", standard output:\n\n"),
+      status$stdout, "\n",
+      "Standard error:\n\n", status$stderr,
+      call. = FALSE
+    )
+  }
+}
+
+download_package_rforge <- function(package, version) {
+  stop("RForge sources do not work just yet")
+}
+
+download_package_url <- function(package, source) {
+  stop("URL sources do not work just yet")
 }

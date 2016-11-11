@@ -5,7 +5,7 @@
 \title{Calculate all or the specified metrics for a package}
 \usage{
 package_metrics(package, version = NULL,
-  metrics = names(list_package_metrics()))
+  metrics = names(list_package_metrics()), source = NULL)
 }
 \arguments{
 \item{package}{Package name, character scalar.}

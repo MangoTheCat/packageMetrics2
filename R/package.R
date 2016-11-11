@@ -154,7 +154,8 @@ list_package_metrics <- function() {
 #' @importFrom withr with_dir with_libpaths
 
 package_metrics <- function(package, version = NULL,
-                            metrics = names(list_package_metrics())) {
+                            metrics = names(list_package_metrics()),
+                            source = NULL) {
 
   all_metrics <- list_package_metrics()
   if (any(! metrics %in% names(all_metrics))) {
@@ -164,7 +165,7 @@ package_metrics <- function(package, version = NULL,
     )
   }
 
-  pkg_dir <- install_package_tmp(package, version)
+  pkg_dir <- install_package_tmp(package, version, source = source)
 
   ## Trick to keep the names in the lapply below
   names(metrics) <- metrics

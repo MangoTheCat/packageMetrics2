@@ -6,7 +6,10 @@ num_rev_deps <- function(package, version = NULL) {
 
   type <- package_type(package)
 
-  if (type == "base") {
+  if (is.na(type)) {
+    NA
+
+  } else if (type == "base") {
     NA
 
   } else if (type == "CRAN") {

@@ -5,6 +5,8 @@ r_base_packages <- c(
   "tcltk", "tools", "translations", "utils"
 )
 
+## These only work after downloading the package, in general.
+
 package_type <- function(package) {
   if (package %in% r_base_packages) return("base")
   if (is_cran_package(package)) return("CRAN")
@@ -42,7 +44,10 @@ first_release <- function(package, version = NULL) {
 
   type <- package_type(package)
 
-  if (type == "base") {
+  if (is.na(type)) {
+    NA
+
+  } else if (type == "base") {
     NA
 
   } else if (type == "CRAN") {
@@ -61,7 +66,10 @@ last_release <- function(package, version = NULL) {
 
   type <- package_type(package)
 
-  if (type == "base") {
+  if (is.na(type)) {
+    NA
+
+  } else if (type == "base") {
     NA
 
   } else if (type == "CRAN") {
@@ -82,7 +90,10 @@ num_recent_updates <- function(package, version = NULL, interval = "6 months") {
 
   type <- package_type(package)
 
-  if (type == "base") {
+  if (is.na(type)) {
+    NA
+
+  } else if (type == "base") {
     NA
 
   } else if (type == "CRAN") {
