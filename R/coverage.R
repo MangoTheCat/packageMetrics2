@@ -12,7 +12,6 @@ author_test_coverage <- function(pkg, by = c("line", "expression")) {
       )
       percent_coverage(cov, by = by)
     },
-    error = function(e) NA_real_,
-    warning = function(w) TRUE
+    error = function(e) NA_real_
   )
 }
