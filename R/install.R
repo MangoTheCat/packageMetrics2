@@ -1,6 +1,9 @@
 
 default_repos <- function() {
-  c(remotes::bioc_install_repos(), CRAN = "https://cran.rstudio.com")
+  c(remotes::bioc_install_repos(),
+    RForge = "http://R-Forge.R-project.org",
+    CRAN = "https://cran.rstudio.com"
+    )
 }
 
 #' Download, extract and install a specific version of a package
@@ -60,7 +63,7 @@ install_package_tmp2 <- function(package, version, quiet, source) {
     download_package_github(package, version, source)
 
   } else if (type == "RForge") {
-    download_package_rforge(package, version)
+    download_package_cranlike(package, version)
 
   } else if (type == "URL") {
     download_package_url(package, source)
@@ -274,10 +277,6 @@ report_system_error <- function(msg, status) {
       call. = FALSE
     )
   }
-}
-
-download_package_rforge <- function(package, version) {
-  stop("RForge sources do not work just yet")
 }
 
 download_package_url <- function(package, source) {
