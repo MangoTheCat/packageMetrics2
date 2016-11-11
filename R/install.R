@@ -280,5 +280,7 @@ report_system_error <- function(msg, status) {
 }
 
 download_package_url <- function(package, source) {
-  stop("URL sources do not work just yet")
+  url <- sub("^url-", "", source)
+  download(tmp <- tempfile(fileext = ".tar.gz"), url)
+  tmp
 }
