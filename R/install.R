@@ -200,6 +200,11 @@ download_package_cranlike <- function(package, version, quiet) {
 download_package_github <- function(package, version, source) {
 
   slug <- sub("^github-", "", source)
+
+  ## Handle subdirectories
+  dir <- sub("^[^/]+/[^/]+", "", slug)
+  slug <- sub("^([^/]+/[^/]+).*$", "\\1", perl = TRUE, slug)
+
   url <- NULL
 
   ## If no version, then just a snapshot
@@ -230,13 +235,13 @@ download_package_github <- function(package, version, source) {
 
   download(tmp <- tempfile(fileext = ".tar.gz"), url)
 
-  build_tar_gz(tmp)
+  build_tar_gz(tmp, dir)
 }
 
 #' @importFrom withr with_dir
 #' @importFrom callr rcmd_safe
 
-build_tar_gz <- function(targz) {
+build_tar_gz <- function(targz, dir) {
 
   dir.create(tmpdir <- tempfile())
   untar(targz, exdir = tmpdir)
@@ -244,7 +249,7 @@ build_tar_gz <- function(targz) {
 
   build_status <- with_dir(
     tmpdir,
-    rcmd_safe("build", basename(pkgdir))
+    rcmd_safe("build", file.path(basename(pkgdir), dir))
   )
   unlink(pkgdir, recursive = TRUE)
   report_system_error("Build failed", build_status)
