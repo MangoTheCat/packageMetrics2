@@ -1,10 +1,7 @@
 
-default_repos <- function() {
-  c(remotes::bioc_install_repos(),
-    RForge = "http://R-Forge.R-project.org",
-    CRAN = "https://cran.rstudio.com"
-    )
-}
+cran_repos   <- c(CRAN = "https://cran.rstudio.com")
+rforge_repos <- c(RForge = "http://R-Forge.R-project.org")
+bioc_repos   <- remotes::bioc_install_repos()
 
 #' Download, extract and install a specific version of a package
 #'
@@ -26,13 +23,6 @@ default_repos <- function() {
 
 install_package_tmp <- function(package, version, quiet = TRUE,
                                 source = NULL) {
-  with_options(
-    list(repos = default_repos()),
-    install_package_tmp2(package, version, quiet = quiet, source = source)
-  )
-}
-
-install_package_tmp2 <- function(package, version, quiet, source) {
 
   pkg_dir <- get_pkg_dir(package, version)
 
@@ -56,14 +46,20 @@ install_package_tmp2 <- function(package, version, quiet, source) {
   } else if (type == "base") {
     download_package_base(package, version, quiet)
 
-  } else if (type %in% c("CRAN", "BioC")) {
-    download_package_cranlike(package, version, quiet)
+  } else if (type == "CRAN") {
+    download_package_cranlike(package, version, quiet, repos = c(cran_repos)
+    )
+
+  } else if (type == "BioC") {
+    download_package_cranlike(package, version, quiet, repos = c(bioc_repos)
+    )
 
   } else if (type == "GitHub") {
     download_package_github(package, version, source)
 
   } else if (type == "RForge") {
-    download_package_cranlike(package, version)
+    download_package_cranlike(package, version, repos = c(rforge_repos)
+    )
 
   } else if (type == "URL") {
     download_package_url(package, source)
@@ -193,14 +189,17 @@ download_package_base <- function(package, version, quiet) {
 
 #' @importFrom remotes download_version
 
-download_package_cranlike <- function(package, version, quiet) {
+download_package_cranlike <- function(package, version, quiet, repos) {
   "!DEBUG Downloading cranlike package"
 
-  download_version(
-    package,
-    version,
-    type = "source",
-    quiet = quiet
+  with_options(
+    list(repos = repos),
+    download_version(
+      package,
+      version,
+      type = "source",
+      quiet = quiet
+    )
   )
 }
 
