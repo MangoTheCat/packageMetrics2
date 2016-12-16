@@ -8,7 +8,10 @@
 #' @name packageMetrics2
 NULL
 
-package_metric <- list
+## package_metric <- list is bad practice, and also interferes
+## with debugme
+
+package_metric <- function(...) list(...)
 
 #' @include coverage.R downloads.R deps.R cyclocomp.R vignette.R
 #' @include github.R code_lines.R gp.R

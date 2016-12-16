@@ -3,6 +3,7 @@
 #' @importFrom jsonlite fromJSON
 
 num_rev_deps <- function(package, version = NULL) {
+  "!DEBUG Querying number of reverse dependencies"
 
   type <- package_type(package)
 
@@ -42,6 +43,7 @@ bioc_num_rev_deps <- function(package, version) {
 #' @importFrom desc desc_get_deps
 
 num_deps <- function(package, version = NULL) {
+  "!DEBUG Querying number of dependencies"
 
   if (is_base_package(package)) {
     NA

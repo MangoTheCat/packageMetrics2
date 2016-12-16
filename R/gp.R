@@ -15,6 +15,8 @@ my_gp_checks <- c(
 #' @importFrom goodpractice gp
 
 get_gp_results <- function(package, version = NULL) {
+  "#! Running goodpractice based checks"
+
   gp_cache_file <- file.path(dirname(getwd()), "gp-data.rda")
   if (file.exists(gp_cache_file)) {
     readRDS(gp_cache_file)

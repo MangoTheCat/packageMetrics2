@@ -3,6 +3,7 @@
 
 download <- function(path, url, auth_token = NULL, basic_auth = NULL,
                      quiet = TRUE) {
+  "!DEBUG Downloading package"
 
   real_url <- url
 
@@ -28,6 +29,7 @@ download <- function(path, url, auth_token = NULL, basic_auth = NULL,
  }
 
 base_download <- function(url, path, quiet) {
+  "!DEBUG Downloading base package"
 
   suppressWarnings(
     status <- utils::download.file(

@@ -26,14 +26,15 @@ Imports:
     remotes,
     rvest,
     withr,
-    xml2
+    xml2,
+    debugme
 Suggests:
     testthat
 Remotes: MangoTheCat/callr,
     MangoTheCat/goodpractice,
     MangoTheCat/remotes
-RoxygenNote: 5.0.1
-Collate:
+RoxygenNote: 5.0.1.9000
+Collate: 
     'code_lines.R'
     'coverage.R'
     'cran_data.R'
@@ -46,6 +47,7 @@ Collate:
     'github.R'
     'gp.R'
     'install.R'
+    'onLoad.R'
     'vignette.R'
     'package.R'
     'utils.R'

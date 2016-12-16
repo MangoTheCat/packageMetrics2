@@ -3,6 +3,7 @@
 #' @importFrom withr with_envvar
 
 author_test_coverage <- function(pkg, by = c("line", "expression")) {
+  "!DEBUG Running covr for author test coverage"
 
   tryCatch(
     {

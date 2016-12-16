@@ -41,6 +41,7 @@ crandb_package <- memoise(function(package, version = NULL) {
 })
 
 first_release <- function(package, version = NULL) {
+  "!DEBUG Finding first release"
 
   type <- package_type(package)
 
@@ -63,6 +64,7 @@ first_release <- function(package, version = NULL) {
 }
 
 last_release <- function(package, version = NULL) {
+  "!DEBUG Finding last release"
 
   type <- package_type(package)
 
@@ -87,6 +89,7 @@ last_release <- function(package, version = NULL) {
 #' @importFrom parsedate parse_date
 
 num_recent_updates <- function(package, version = NULL, interval = "6 months") {
+  "!DEBUG Counting reset updates"
 
   type <- package_type(package)
 

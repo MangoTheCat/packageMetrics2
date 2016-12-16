@@ -1,5 +1,6 @@
 
 compiled_code_lines <- function(package, version = NULL) {
+  "!DEBUG Counting compiled code lines"
 
   src_dir <- file.path(package, "src")
 
@@ -14,16 +15,18 @@ compiled_code_lines <- function(package, version = NULL) {
       "\\.f90|\\.f95|\\.f03|\\.f|\\.for)$"
     )
   )
-  code_lines(files)  
+  code_lines(files)
 }
 
 r_code_lines <- function(package, version = NULL) {
+  "!DEBUG Counting R code lines"
+
   files <- list.files(
     file.path(package, "R"),
     full.names = TRUE,
     pattern = "[.][rRsSq]$"
   )
-  code_lines(files)  
+  code_lines(files)
 }
 
 code_lines <- function(files) {
@@ -34,6 +37,8 @@ code_lines <- function(files) {
 #' @importFrom callr r_safe
 
 function_lines <- function(package, version = NULL) {
+  "!DEBUG Counting function code lines"
+
   fun <- function(package) {
     files <- list.files(
       file.path(package, "R"),

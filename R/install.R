@@ -159,6 +159,8 @@ package_source_type <- function(package, source) {
 #' @include urls.R
 
 download_package_base <- function(package, version, quiet) {
+  "!DEBUG Downloading base package"
+
   if (version != packageDescription(package)$Version) {
     stop("R version and base package version must match")
   }
@@ -192,6 +194,8 @@ download_package_base <- function(package, version, quiet) {
 #' @importFrom remotes download_version
 
 download_package_cranlike <- function(package, version, quiet) {
+  "!DEBUG Downloading cranlike package"
+
   download_version(
     package,
     version,
@@ -201,6 +205,7 @@ download_package_cranlike <- function(package, version, quiet) {
 }
 
 download_package_github <- function(package, version, source) {
+  "!DEBUG Downloading GitHub package"
 
   slug <- sub("^github-", "", source)
 

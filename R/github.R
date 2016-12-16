@@ -14,6 +14,8 @@
 #' @importFrom desc desc_get
 
 is_on_github <- function(package, version = NULL) {
+  "!DEBUG Checking checking whether package is on GitHub"
+
   url <- desc_get(file = package, "URL")
   bug_reports <- desc_get(file = package, "BugReports")
 

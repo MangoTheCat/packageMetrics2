@@ -5,6 +5,8 @@
 cran_downloads_beginning <- "2012-01-01"
 
 download_counts <- function(package, version = NULL) {
+  "!DEBUG Querying download counts"
+
   type <- package_type(package)
 
   if (is.na(type)) {
