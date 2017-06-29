@@ -29,6 +29,7 @@ knitr::opts_chunk$set(
 This package is used to collect metrics about CRAN, BioConductor or other
   packages, for Valid-R.
 
+
 ## Installation
 
 ```{r eval = FALSE}
@@ -39,6 +40,18 @@ remotes::install_github("mangothecat/packageMetrics2")
 
 ```{r}
 library(packageMetrics2)
+```
+
+See available metrics:
+```{r}
+list_package_metrics()
+```
+
+Calculate metrics for a named package:
+
+```{r, warning=FALSE}
+metrics <- package_metrics("plyr")
+head(metrics)
 ```
 
 ## License
