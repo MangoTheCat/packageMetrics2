@@ -218,7 +218,7 @@ package_metrics_csv <- function(package, file, version = NULL,
     value = unname(met)
   )
 
-  write.table(
+  utils::write.table(
     df,  file = file,
     row.names = FALSE, col.names = FALSE,
     sep = ",", qmethod = "double", dec = "."

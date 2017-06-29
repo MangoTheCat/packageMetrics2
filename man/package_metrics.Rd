@@ -30,4 +30,3 @@ Calculate all or the specified metrics for a package
 \code{\link{package_metrics_csv}} to calculate the
   metrics and write the output to a CSV file.
 }
-

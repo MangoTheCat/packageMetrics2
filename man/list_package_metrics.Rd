@@ -13,4 +13,3 @@ A named character vector of metrics descriptions.
 \description{
 List all implemented metrics
 }
-

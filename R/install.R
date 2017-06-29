@@ -81,7 +81,7 @@ install_package_tmp <- function(package, version, quiet = TRUE,
     )
   }
 
-  untar(filename, exdir = src_dir)
+  utils::untar(filename, exdir = src_dir)
 
   pkg_dir
 }
@@ -157,7 +157,7 @@ package_source_type <- function(package, source) {
 download_package_base <- function(package, version, quiet) {
   "!DEBUG Downloading base package"
 
-  if (version != packageDescription(package)$Version) {
+  if (version != utils::packageDescription(package)$Version) {
     stop("R version and base package version must match")
   }
 
@@ -180,7 +180,7 @@ download_package_base <- function(package, version, quiet) {
       lines <- gsub("@VERSION@", version, lines, fixed = TRUE)
       writeLines(lines, file.path(package, "DESCRIPTION"))
 
-      tar(tarfile = tarfile, files = package)
+      utils::tar(tarfile = tarfile, files = package)
     }
   )
 
@@ -251,7 +251,7 @@ download_package_github <- function(package, version, source) {
 build_tar_gz <- function(targz, dir) {
 
   dir.create(tmpdir <- tempfile())
-  untar(targz, exdir = tmpdir)
+  utils::untar(targz, exdir = tmpdir)
   pkgdir <- file.path(tmpdir, list.files(tmpdir))
 
   build_status <- with_dir(

@@ -26,4 +26,3 @@ A path to a directory where the package is downloaded,
 Download, extract and install a specific version of a package
 }
 \keyword{internal}
-

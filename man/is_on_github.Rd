@@ -21,4 +21,3 @@ field in the \code{DESCRIPTION} file, and check if
 they point to GitHub.
 }
 \keyword{internal}
-

@@ -28,4 +28,3 @@ Calculate metrics and write them to a CSV file
 \code{\link{package_metrics}} to calculate the metrics,
 without writing them to a file.
 }
-

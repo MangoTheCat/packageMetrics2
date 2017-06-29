@@ -12,13 +12,19 @@ knitr::opts_chunk$set(
 
 > Collect Metrics about R Packages
 
+[![Project Status:  WIP: Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip)
+[![Travis-CI Build Status](https://travis-ci.org/MangoTheCat/packageMetrics2.svg?branch=master)](https://travis-ci.org/MangoTheCat/packageMetrics2)
+[![](http://www.r-pkg.org/badges/version/packageMetrics2)](http://www.r-pkg.org/pkg/packageMetrics2)
+[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/packageMetrics2)](http://www.r-pkg.org/pkg/packageMetrics2)
+[![Coverage Status](https://codecov.io/github/MangoTheCat/packageMetrics2/coverage.svg?branch=master)](https://codecov.io/github/MangoTheCat/packageMetrics2?branch=master)
+
 This package is used to collect metrics about CRAN, BioConductor or other
   packages, for Valid-R.
 
 ## Installation
 
 ```{r eval = FALSE}
-remotes::install_git("http://git.mango.local/gcsardi/packageMetrics2.git")
+remotes::install_github("mangothecat/packageMetrics2")
 ```
 
 ## Usage
@@ -29,4 +35,4 @@ library(packageMetrics2)
 
 ## License
 
-Proprietary © Mango Solutions
+MIT © Mango Solutions

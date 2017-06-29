@@ -51,7 +51,7 @@ download_method <- function() {
   if (isTRUE(unname(capabilities("libcurl")))) {
     "libcurl"
 
-  } else if (os_type() == "windows") {
+  } else if (remotes:::os_type() == "windows") {
     "wininet"
 
   } else {
@@ -61,7 +61,7 @@ download_method <- function() {
 
 curl_download <- function(url, path, quiet) {
 
-  if (!pkg_installed("curl")) {
+  if (!remotes:::pkg_installed("curl")) {
     stop("The 'curl' package is required if R is older than 3.2.0")
   }
 
